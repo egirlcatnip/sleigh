@@ -5,7 +5,8 @@ macro_rules! main {
         use std::fs;
         use std::path::Path;
 
-        type Result<T> = anyhow::Result<Option<T>>;
+        use anyhow::Result;
+        use anyhow::anyhow;
 
         #[derive(Parser)]
         #[command(
@@ -26,7 +27,7 @@ macro_rules! main {
             part: String,
         }
 
-        fn main() -> anyhow::Result<()> {
+        fn main() ->  Result<()> {
             // Parse command-line arguments
             let cli = Cli::parse();
 
@@ -47,21 +48,21 @@ macro_rules! main {
             // Call the `part_one` and `part_two` functions based on the `-p` argument
             match cli.part.as_str() {
                 "1" => match part_one(&input) {
-                    Ok(result) => println!("{}", result),
+                    Ok(result) => println!("{:#?}", result),
                     Err(err) => eprintln!("Part 1 failed: {}", err),
                 },
                 "2" => match part_two(&input) {
-                    Ok(result) => println!("{}", result),
+                    Ok(result) => println!("{:#?}", result),
                     Err(err) => eprintln!("Part 2 failed: {}", err),
                 },
                 "both" | "" => {
                     match part_one(&input) {
-                        Ok(result) => println!("Part 1: {}", result),
+                        Ok(result) => println!("Part 1: {:#?}", result),
                         Err(err) => eprintln!("Part 1 failed: {}", err),
                     }
 
                     match part_two(&input) {
-                        Ok(result) => println!("Part 2: {}", result),
+                        Ok(result) => println!("Part 2: {:#?}", result),
                         Err(err) => eprintln!("Part 2 failed: {}", err),
                     }
                 }

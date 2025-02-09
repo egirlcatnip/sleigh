@@ -2,3 +2,7 @@
 members = ["sleigh", "year/*"]
 resolver = "2"
 default-members = ["sleigh", "year/*"]
+
+[workspace.dependencies]
+clap = { version = "4.5.28", features = ["derive"] }
+anyhow = "1.0.95"

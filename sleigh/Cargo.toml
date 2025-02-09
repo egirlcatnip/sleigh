@@ -5,7 +5,8 @@ edition = "2024"
 default-run = "sleigh"
 
 [dependencies]
-clap = { version = "4.5.23", features = ["derive"] }
-anyhow = "1.0.94"
 aoc-client = "0.2"
 chrono = "0.4.38"
+
+clap = { workspace = true, features = ["derive"] }
+anyhow = { workspace = true }
